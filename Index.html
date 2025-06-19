@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jason Bhalo Website</title>
+
+  <!-- CSS styles to make the page look better -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #f0f0f0;
+      color: #222;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    .info {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Title from JSON will be inserted here -->
+  <h1 id="title">Loading...</h1>
+
+  <!-- Section to show name, school, college, class -->
+  <div class="info">
+    <p><strong>Name:</strong> <span id="name"></span></p>
+    <p><strong>School:</strong> <span id="school"></span></p>
+    <p><strong>College:</strong> <span id="college"></span></p>
+    <p><strong>Class:</strong> <span id="class"></span></p>
+  </div>
+
+  <!-- Description from JSON -->
+  <p id="description"></p>
+
+  <!-- JavaScript to fetch and display data from j7.json -->
+  <script>
+    // Fetch the JSON file
+    fetch('j7.json')
+      .then(response => response.json()) // Convert response to JSON
+      .then(data => {
+        // Insert values into HTML elements using their IDs
+        document.getElementById('title').textContent = data.title;
+        document.getElementById('name').textContent = data.name;
+        document.getElementById('school').textContent = data.school;
+        document.getElementById('college').textContent = data.college;
+        document.getElementById('class').textContent = data.class;
+        document.getElementById('description').textContent = data.description;
+      })
+      .catch(error => {
+        // Show error message if loading fails
+        document.getElementById('title').textContent = 'Error loading data';
+        console.error('Failed to load j7.json:', error);
+      });
+  </script>
+</body>
+</html>
